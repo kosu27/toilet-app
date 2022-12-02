@@ -2,7 +2,7 @@ module.exports = {
   root: true,
   parser: "@typescript-eslint/parser",
   parserOptions: { project: "./tsconfig.json" },
-  env: { es2021: true, browser: true, jest: true, node: true },
+  env: { es2021: true, browser: true, node: true },
   plugins: ["simple-import-sort"],
   extends: [
     "eslint:recommended",
@@ -13,23 +13,25 @@ module.exports = {
     "prettier",
   ],
   rules: {
-    "no-console": ["error", { allow: ["warn", "info", "error"] }],
+    "no-console": ["error", { allow: ["warn", "info", "error"] }], // console.logが残っていればwarn
     "no-restricted-syntax": [
+      // enumは使ってはいけない
       "error",
       { selector: "TSEnumDeclaration", message: "Don't declare enums" },
     ],
-    "prefer-arrow-callback": "error",
-    "prefer-const": "error",
-    "func-style": ["error", "expression"],
-    "arrow-body-style": ["error", "always"],
+    "prefer-arrow-callback": "error", // arrow functionを許可
+    "prefer-const": "error", // const推奨
+    "func-style": ["error", "expression"], // 関数式を使わなければいけない
+    "arrow-body-style": ["error", "always"], // 関数式の中身は必ず中括弧で囲む
     "no-restricted-imports": [
       "error",
-      { paths: [{ name: "react", importNames: ["default"] }] },
+      { paths: [{ name: "react", importNames: ["default"] }] }, // reactの明示的なimportは不要なので禁止
     ],
-    "react/prop-types": "off",
-    "react/react-in-jsx-scope": "off",
-    "react/display-name": "error",
+    "react/prop-types": "off", // ts使うので不要
+    "react/react-in-jsx-scope": "off", // reactはグローバルなので不要
+    "react/display-name": "error", // 無名関数を禁止する
     "react/jsx-handler-names": [
+      // イベントハンドラ名を矯正する
       "error",
       {
         eventHandlerPrefix: "handle",
@@ -38,13 +40,14 @@ module.exports = {
         checkInlineFunction: true,
       },
     ],
-    "react/destructuring-assignment": ["error", "never"],
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "import/newline-after-import": "error",
-    "import/no-default-export": "error",
-    "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error",
+    "react/destructuring-assignment": ["error", "never"], // propsなどを直接使用可能にする
+    "react/no-unused-prop-types": "error", // 未使用propsはエラー
+    "react-hooks/rules-of-hooks": "error", // hooksの基本的なlinter
+    "react-hooks/exhaustive-deps": "warn", // effectやcallbackのdeps linter
+    "import/newline-after-import": "error", // 最後のimportの後に空行を追加
+    "import/no-default-export": "error", // default-exportを禁止する
+    "simple-import-sort/imports": "error", // import文の整列
+    "simple-import-sort/exports": "error", // export文の整列
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
