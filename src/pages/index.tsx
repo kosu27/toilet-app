@@ -5,6 +5,20 @@ import Link from 'next/link'
 
 import styles from '../styles/Home.module.css'
 
+type Marker = {
+  name: string
+  latCoord: number
+  longCoord: number
+}
+
+export const markers: Marker[] = [
+  {
+    name: 'NY',
+    latCoord: 40.7142484,
+    longCoord: -73.9614103,
+  },
+]
+
 const Home = () => {
   return (
     <div className={styles.container}>
