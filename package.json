@@ -19,6 +19,8 @@
     "@mantine/hooks": "^5.9.1",
     "@mantine/next": "^5.9.1",
     "@mapbox/mapbox-gl-geocoder": "^5.0.1",
+    "@usedapp/core": "^1.2.2",
+    "ethers": "^5.7.2",
     "mapbox-gl": "^2.11.0",
     "next": "13.0.5",
     "react": "18.2.0",
